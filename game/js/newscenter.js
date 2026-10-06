@@ -2,6 +2,7 @@
  * newscenter.js — 분야 메뉴(학원 패널 스타일) → 하단 대화창으로 기사 열람 → 끝나면 메뉴로 복귀
  *   뉴스 센터(분야 4개)와, news.json 에 categories 가 있는 건물(스포츠센터 종목별 소식)이 같이 쓴다.
  *   키: ↑↓ 선택, Enter/Space 확인, Esc 닫기 (대화 중 Esc → 메뉴로 돌아옴, 메뉴에서 Esc → 완전히 닫힘)
+ *   메뉴에서 Backspace = 뒤로(Esc 와 같음, 닫기), ← 는 동작 없음. 기사 대화 중 Backspace/← 는 대화창의 '이전 줄'(첫 줄에선 무시).
  *   열려 있는 동안 keydown 은 여기서 소비되어 Phaser 로 가지 않는다 (main.js setUiLock 과 함께 사용).
  */
 window.DotGame = window.DotGame || {};
@@ -56,7 +57,8 @@ DotGame.NewsCenter = (function () {
     if (!open || reading) return;
     e.stopPropagation();
     var k = e.key;
-    if (k === 'Escape') { e.preventDefault(); close(); }
+    if (k === 'Escape' || k === 'Backspace') { e.preventDefault(); if (!e.repeat || k === 'Escape') close(); }   // Backspace = 뒤로(닫기). ← 는 의미 없음(소비만)
+    else if (k === 'ArrowLeft') { e.preventDefault(); }
     else if (k === 'ArrowUp' || k === 'w' || k === 'W') { e.preventDefault(); focus = (focus + rows() - 1) % rows(); render(); }
     else if (k === 'ArrowDown' || k === 's' || k === 'S') { e.preventDefault(); focus = (focus + 1) % rows(); render(); }
     else if (k === 'Enter' || k === ' ') { e.preventDefault(); if (!e.repeat) choose(); }

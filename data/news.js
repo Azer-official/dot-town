@@ -2,7 +2,7 @@
 // 재생성: python3 tools/build_fallbacks.py
 window.NEWS_DATA = {
   "version": 1,
-  "updated_at": "2026-10-07T01:05:00+09:00",
+  "updated_at": "2026-10-07T01:15:00+09:00",
   "is_sample": false,
   "note": "2026-10-07 콘텐츠 봇 업데이트. 각 항목 source 는 원문 기사/레시피 URL.",
   "buildings": {
@@ -184,13 +184,22 @@ window.NEWS_DATA = {
               "source": "https://www.aljazeera.com/sports/2026/10/6/erling-haaland-faces-injury-scare-ahead-of-man-city-vs-liverpool"
             },
             {
-              "title": "여자팀, WSL 아스널에 4-2 역전승, 5전 전승 선두",
+              "title": "홀란, 리버풀전 앞두고 추가 휴식…심각한 부상 우려는 줄어",
               "lines": [
-                "맨시티 여자팀이 4일 에티하드에서 아스널을 4-2로 꺾었어요. 헴프가 2골, 카스파레이·쇼가 1골씩!",
-                "두 번이나 끌려가다 뒤집었고, 개막 5연승으로 WSL 1위에 올랐어요."
+                "노르웨이 솔바켄 감독은 홀란이 맨시티로부터 며칠의 추가 휴식을 받았다고 밝혔어요.",
+                "맨체스터 이브닝 뉴스는 홀란이 근육 피로 의심으로 교체됐고, 심각한 부상 우려는 줄었다고 전했어요. 리그 5경기 5골로 활약 중이에요."
               ],
-              "source": "https://www.skysports.com/football/manchester-city-women-vs-arsenal-women/report/575786",
-              "published_at": "2026-10-05T02:37:30+09:00"
+              "source": "https://www.manchestereveningnews.co.uk/sport/football/football-news/erling-haaland-man-city-liverpool-34722174",
+              "published_at": "2026-10-06T18:49:00+09:00"
+            },
+            {
+              "title": "A매치 휴식기 뒤 첫 경기는 12일 안필드 리버풀 원정",
+              "lines": [
+                "맨시티는 12일(한국시간) 안필드에서 리버풀과 프리미어리그 6라운드를 치러요. 시즌 초반 5연승으로 1위를 달리고 있어요.",
+                "인터풋볼에 따르면 리버풀도 A매치 기간 이삭(발가락)과 각포(발목)가 다쳐 소속팀에 일찍 복귀했어요."
+              ],
+              "source": "https://www.interfootball.co.kr/news/articleView.html?idxno=695771",
+              "published_at": "2026-10-05T07:01:00+09:00"
             }
           ]
         },

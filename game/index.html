@@ -24,7 +24,7 @@
       <div class="dlg-box">
         <div id="dlg-text" class="dlg-text"></div>
         <ol id="dlg-choices" class="dlg-choices hidden"></ol>
-        <div class="dlg-footer"><span id="dlg-meta"></span><span id="dlg-page"></span></div>
+        <div class="dlg-footer"><span id="dlg-meta"></span><span id="dlg-hint" class="dlg-hint"></span><span id="dlg-page"></span></div>
         <div id="dlg-next" class="dlg-next hidden">▼</div>
         <div id="dlg-portrait" class="dlg-portrait hidden"><img id="dlg-portrait-img" alt=""></div>
       </div>
@@ -35,7 +35,7 @@
       <div class="panel-title"><span id="nc-title">뉴스 센터</span> <span id="nc-badge" class="dlg-badge hidden">예시 데이터</span></div>
       <div id="nc-greeting" class="nc-greeting"></div>
       <div id="nc-list"></div>
-      <div class="ac-help">↑↓ 선택 · Enter 보기 (다 보면 메뉴로 돌아옴) · Esc 닫기</div>
+      <div class="ac-help">↑↓ 선택 · Enter 보기 (다 보면 메뉴로 돌아옴) · Esc / Backspace 닫기</div>
     </div>
 
     <!-- 학원 UI: 교재/페이지 범위 입력 → 요약 / 예상 문제 -->
@@ -59,7 +59,7 @@
       </div>
     </div>
   </div>
-  <div class="controls">이동: 방향키 / WASD &nbsp;·&nbsp; 문 앞에서 대화: Space / Enter &nbsp;·&nbsp; 다음: Space / Enter &nbsp;·&nbsp; 닫기: Esc &nbsp;·&nbsp; 뉴스 센터·스포츠센터: 분야 선택 &nbsp;·&nbsp; 선택지: ↑↓ + Enter &nbsp;·&nbsp; 학원: 페이지 범위 입력 후 요약/예상문제</div>
+  <div class="controls">이동: 방향키 / WASD &nbsp;·&nbsp; 문 앞에서 대화: Space / Enter &nbsp;·&nbsp; 다음: Space / Enter &nbsp;·&nbsp; 이전 줄: Backspace / ← &nbsp;·&nbsp; 닫기: Esc &nbsp;·&nbsp; 뉴스 센터·스포츠센터: 분야 선택 &nbsp;·&nbsp; 선택지: ↑↓ + Enter &nbsp;·&nbsp; 학원: 페이지 범위 입력 후 요약/예상문제</div>
 
   <!-- 순서 중요: Phaser → 데이터 대체본(.js, file:// 용) → 설정/로직 -->
   <script src="lib/phaser.min.js"></script>

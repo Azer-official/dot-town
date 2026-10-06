@@ -167,3 +167,7 @@ body { display: flex; flex-direction: column; align-items: center; justify-conte
   font-size: 1.9cqw; font-weight: 700; padding: .7cqw 2cqw; border-radius: .7cqw;
   background: #fff4f8; color: #8a2350; border: .35cqw solid #d9668f; box-shadow: 0 .3cqw 0 #8a2350;
 }
+
+/* 대화창 조작 힌트 (Space 다음 · Backspace 이전 · Esc 닫기) */
+.dlg-hint { flex: 1; text-align: center; opacity: .8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 0 1cqw; }
+.dlg-choice.locked { opacity: .45; }
