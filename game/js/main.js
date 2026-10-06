@@ -216,6 +216,7 @@
         w: KC.W, a: KC.A, s: KC.S, d: KC.D, space: KC.SPACE, enter: KC.ENTER, esc: KC.ESC
       });
       var onAction = function (ev) {
+        if (ev && ev.preventDefault) ev.preventDefault();   // 상호작용 Space 가 방금 포커스된 학원 입력칸에 공백으로 들어가지 않게
         if (ev && ev.repeat) return;
         if (DotGame.Academy.isOpen() || DotGame.NewsCenter.menuVisible()) return;
         if (DotGame.Dialogue.isOpen()) { DotGame.Dialogue.advance(); return; }
