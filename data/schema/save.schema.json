@@ -1,0 +1,281 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "dotgame/save.schema.json",
+  "title": "DotGame 세이브 (브라우저 localStorage['dotgame.save']) save_version 2",
+  "type": "object",
+  "required": [
+    "save_version",
+    "start_date_kst",
+    "last_play_date_kst",
+    "day",
+    "affection",
+    "flags",
+    "quiz",
+    "academy",
+    "story",
+    "daily"
+  ],
+  "properties": {
+    "save_version": {
+      "const": 2
+    },
+    "created_at": {
+      "type": "string",
+      "description": "ISO 8601 +09:00"
+    },
+    "updated_at": {
+      "type": "string",
+      "description": "ISO 8601 +09:00, 저장할 때마다 갱신"
+    },
+    "start_date_kst": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "description": "첫 플레이 날짜 (KST)"
+    },
+    "last_play_date_kst": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "description": "마지막으로 일차가 반영된 날짜 (KST)"
+    },
+    "day": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "일차 = 서로 다른 플레이 날짜 수"
+    },
+    "affection": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "number"
+      },
+      "description": "캐릭터 id → 호감도. 기본 {heroine: 0}"
+    },
+    "flags": {
+      "type": "object",
+      "description": "스토리 플래그 이름 → 값(보통 true)"
+    },
+    "quiz": {
+      "type": "object",
+      "required": [
+        "history",
+        "wrong"
+      ],
+      "properties": {
+        "history": {
+          "type": "array",
+          "maxItems": 200,
+          "items": {
+            "type": "object",
+            "required": [
+              "date_kst",
+              "day",
+              "material_id",
+              "range",
+              "total",
+              "answered",
+              "correct",
+              "completed"
+            ],
+            "properties": {
+              "date_kst": {
+                "type": "string"
+              },
+              "day": {
+                "type": "integer"
+              },
+              "at": {
+                "type": "string"
+              },
+              "material_id": {
+                "type": "string"
+              },
+              "range": {
+                "type": "array",
+                "items": {
+                  "type": "integer"
+                },
+                "minItems": 2,
+                "maxItems": 2
+              },
+              "total": {
+                "type": "integer"
+              },
+              "answered": {
+                "type": "integer"
+              },
+              "correct": {
+                "type": "integer"
+              },
+              "completed": {
+                "type": "boolean",
+                "description": "false = 도중에 닫음"
+              }
+            }
+          }
+        },
+        "wrong": {
+          "type": "array",
+          "maxItems": 500,
+          "description": "오답노트. 틀리면 추가/횟수+1, 나중에 맞히면 제거",
+          "items": {
+            "type": "object",
+            "required": [
+              "material_id",
+              "question_id",
+              "times_wrong"
+            ],
+            "properties": {
+              "material_id": {
+                "type": "string"
+              },
+              "question_id": {
+                "type": "string"
+              },
+              "times_wrong": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "last_chosen_index": {
+                "type": "integer"
+              },
+              "answer_index": {
+                "type": "integer"
+              },
+              "last_wrong_date_kst": {
+                "type": "string"
+              },
+              "question": {
+                "type": "string",
+                "description": "문제 앞 120자 (표시용 캐시)"
+              }
+            }
+          }
+        }
+      }
+    },
+    "academy": {
+      "type": "object",
+      "properties": {
+        "last_range": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "object",
+              "required": [
+                "material_id",
+                "start",
+                "end"
+              ],
+              "properties": {
+                "material_id": {
+                  "type": "string"
+                },
+                "start": {
+                  "type": "integer"
+                },
+                "end": {
+                  "type": "integer"
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "story": {
+      "type": "object",
+      "description": "스토리 엔진 기록 (v2). 키 = 캐릭터id/장면id",
+      "required": [
+        "seen",
+        "released",
+        "backlog_day",
+        "choices",
+        "stages"
+      ],
+      "properties": {
+        "seen": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+          },
+          "description": "재생한 장면 → 날짜"
+        },
+        "released": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+          },
+          "description": "풀린 장면 → 날짜 (밀린 이벤트 포함)"
+        },
+        "backlog_day": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "string",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+            }
+          ],
+          "description": "마지막으로 밀린 이벤트를 푼 플레이 날짜"
+        },
+        "choices": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "장면키#줄번호 → 선택지 id"
+        },
+        "stages": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "since": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+              }
+            }
+          },
+          "description": "캐릭터 id → 현재 호감도 단계"
+        }
+      }
+    },
+    "daily": {
+      "type": "object",
+      "description": "일일 반응 재생 기록 (v2)",
+      "required": [
+        "date",
+        "played"
+      ],
+      "properties": {
+        "date": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "string",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+            }
+          ]
+        },
+        "played": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

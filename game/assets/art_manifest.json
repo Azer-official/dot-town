@@ -1,0 +1,454 @@
+{
+ "spec": "game/js/assets.js — TILE_SIZE 16, SCALE 3; building image = (w*16)x(h*16), door = local tile (3,4)",
+ "tile_size": 16,
+ "tileset": {
+  "file": "tiles/town_tileset.png",
+  "columns": 8,
+  "note": "index = row*8+col; same images as the individual files"
+ },
+ "tiles": [
+  {
+   "index": 0,
+   "key": "grass",
+   "file": "tiles/grass.png",
+   "size": [
+    16,
+    16
+   ],
+   "suggested_char": ".",
+   "solid": false,
+   "base": null,
+   "wired_in_assets_js": true
+  },
+  {
+   "index": 1,
+   "key": "path",
+   "file": "tiles/path.png",
+   "size": [
+    16,
+    16
+   ],
+   "suggested_char": ":",
+   "solid": false,
+   "base": null,
+   "wired_in_assets_js": true
+  },
+  {
+   "index": 2,
+   "key": "wall",
+   "file": "tiles/wall.png",
+   "size": [
+    16,
+    16
+   ],
+   "suggested_char": "#",
+   "solid": true,
+   "base": null,
+   "wired_in_assets_js": true,
+   "note": "생울타리(hedge) — 맵 외곽 테두리용, 가로/세로 모두 이음매 없음"
+  },
+  {
+   "index": 3,
+   "key": "tree",
+   "file": "tiles/tree.png",
+   "size": [
+    16,
+    16
+   ],
+   "suggested_char": "T",
+   "solid": true,
+   "base": "grass",
+   "wired_in_assets_js": true
+  },
+  {
+   "index": 4,
+   "key": "water",
+   "file": "tiles/water.png",
+   "size": [
+    16,
+    16
+   ],
+   "suggested_char": "~",
+   "solid": true,
+   "base": null,
+   "wired_in_assets_js": true
+  },
+  {
+   "index": 5,
+   "key": "flower",
+   "file": "tiles/flower.png",
+   "size": [
+    16,
+    16
+   ],
+   "suggested_char": "f",
+   "solid": false,
+   "base": "grass",
+   "wired_in_assets_js": true
+  },
+  {
+   "index": 6,
+   "key": "sidewalk",
+   "file": "tiles/sidewalk.png",
+   "size": [
+    16,
+    16
+   ],
+   "suggested_char": "=",
+   "solid": false,
+   "base": null,
+   "wired_in_assets_js": false
+  },
+  {
+   "index": 7,
+   "key": "road",
+   "file": "tiles/road.png",
+   "size": [
+    16,
+    16
+   ],
+   "suggested_char": "r",
+   "solid": false,
+   "base": null,
+   "wired_in_assets_js": false,
+   "note": "아스팔트 + 노란 중앙 점선(가로 방향)"
+  },
+  {
+   "index": 8,
+   "key": "road_plain",
+   "file": "tiles/road_plain.png",
+   "size": [
+    16,
+    16
+   ],
+   "suggested_char": "R",
+   "solid": false,
+   "base": null,
+   "wired_in_assets_js": false
+  },
+  {
+   "index": 9,
+   "key": "crosswalk",
+   "file": "tiles/crosswalk.png",
+   "size": [
+    16,
+    16
+   ],
+   "suggested_char": "z",
+   "solid": false,
+   "base": null,
+   "wired_in_assets_js": false,
+   "note": "세로 줄무늬 → 가로 도로를 건너는 횡단보도"
+  },
+  {
+   "index": 10,
+   "key": "bench",
+   "file": "tiles/bench.png",
+   "size": [
+    16,
+    16
+   ],
+   "suggested_char": "b",
+   "solid": true,
+   "base": "grass",
+   "wired_in_assets_js": false
+  },
+  {
+   "index": 11,
+   "key": "lamp",
+   "file": "tiles/lamp.png",
+   "size": [
+    16,
+    16
+   ],
+   "suggested_char": "l",
+   "solid": true,
+   "base": "grass",
+   "wired_in_assets_js": false
+  },
+  {
+   "index": 12,
+   "key": "bush",
+   "file": "tiles/bush.png",
+   "size": [
+    16,
+    16
+   ],
+   "suggested_char": "o",
+   "solid": true,
+   "base": "grass",
+   "wired_in_assets_js": false
+  },
+  {
+   "index": 13,
+   "key": "flowerbed",
+   "file": "tiles/flowerbed.png",
+   "size": [
+    16,
+    16
+   ],
+   "suggested_char": "F",
+   "solid": true,
+   "base": "grass",
+   "wired_in_assets_js": false
+  },
+  {
+   "index": 14,
+   "key": "fence_h",
+   "file": "tiles/fence_h.png",
+   "size": [
+    16,
+    16
+   ],
+   "suggested_char": "-",
+   "solid": true,
+   "base": "grass",
+   "wired_in_assets_js": false
+  },
+  {
+   "index": 15,
+   "key": "fence_v",
+   "file": "tiles/fence_v.png",
+   "size": [
+    16,
+    16
+   ],
+   "suggested_char": "|",
+   "solid": true,
+   "base": "grass",
+   "wired_in_assets_js": false
+  },
+  {
+   "index": 16,
+   "key": "fountain_tl",
+   "file": "tiles/fountain_tl.png",
+   "size": [
+    16,
+    16
+   ],
+   "suggested_char": "1",
+   "solid": true,
+   "base": "grass",
+   "wired_in_assets_js": false,
+   "note": "2x2 분수: 1 2 / 3 4 순서로 배치"
+  },
+  {
+   "index": 17,
+   "key": "fountain_tr",
+   "file": "tiles/fountain_tr.png",
+   "size": [
+    16,
+    16
+   ],
+   "suggested_char": "2",
+   "solid": true,
+   "base": "grass",
+   "wired_in_assets_js": false,
+   "note": "2x2 분수: 1 2 / 3 4 순서로 배치"
+  },
+  {
+   "index": 18,
+   "key": "fountain_bl",
+   "file": "tiles/fountain_bl.png",
+   "size": [
+    16,
+    16
+   ],
+   "suggested_char": "3",
+   "solid": true,
+   "base": "grass",
+   "wired_in_assets_js": false,
+   "note": "2x2 분수: 1 2 / 3 4 순서로 배치"
+  },
+  {
+   "index": 19,
+   "key": "fountain_br",
+   "file": "tiles/fountain_br.png",
+   "size": [
+    16,
+    16
+   ],
+   "suggested_char": "4",
+   "solid": true,
+   "base": "grass",
+   "wired_in_assets_js": false,
+   "note": "2x2 분수: 1 2 / 3 4 순서로 배치"
+  }
+ ],
+ "buildings": {
+  "pcbang": {
+   "file": "buildings/pcbang.png",
+   "size_px": [
+    112,
+    80
+   ],
+   "footprint_tiles": [
+    7,
+    5
+   ],
+   "door_local_tile": [
+    3,
+    4
+   ],
+   "door_px_rect": [
+    48,
+    64,
+    16,
+    16
+   ],
+   "collision": "entire 7x5 footprint (main.js default)",
+   "label_signboard_px": [
+    7,
+    33,
+    98,
+    14
+   ],
+   "label_note": "blank cream signboard; main.js draws the Korean name centred at local (56, 39.5)"
+  },
+  "cooking": {
+   "file": "buildings/cooking.png",
+   "size_px": [
+    112,
+    80
+   ],
+   "footprint_tiles": [
+    7,
+    5
+   ],
+   "door_local_tile": [
+    3,
+    4
+   ],
+   "door_px_rect": [
+    48,
+    64,
+    16,
+    16
+   ],
+   "collision": "entire 7x5 footprint (main.js default)",
+   "label_signboard_px": [
+    7,
+    33,
+    98,
+    14
+   ],
+   "label_note": "blank cream signboard; main.js draws the Korean name centred at local (56, 39.5)"
+  },
+  "entertainment": {
+   "file": "buildings/entertainment.png",
+   "size_px": [
+    112,
+    80
+   ],
+   "footprint_tiles": [
+    7,
+    5
+   ],
+   "door_local_tile": [
+    3,
+    4
+   ],
+   "door_px_rect": [
+    48,
+    64,
+    16,
+    16
+   ],
+   "collision": "entire 7x5 footprint (main.js default)",
+   "label_signboard_px": [
+    7,
+    33,
+    98,
+    14
+   ],
+   "label_note": "blank cream signboard; main.js draws the Korean name centred at local (56, 39.5)"
+  },
+  "sports": {
+   "file": "buildings/sports.png",
+   "size_px": [
+    112,
+    80
+   ],
+   "footprint_tiles": [
+    7,
+    5
+   ],
+   "door_local_tile": [
+    3,
+    4
+   ],
+   "door_px_rect": [
+    48,
+    64,
+    16,
+    16
+   ],
+   "collision": "entire 7x5 footprint (main.js default)",
+   "label_signboard_px": [
+    7,
+    33,
+    98,
+    14
+   ],
+   "label_note": "blank cream signboard; main.js draws the Korean name centred at local (56, 39.5)"
+  },
+  "academy": {
+   "file": "buildings/academy.png",
+   "size_px": [
+    112,
+    80
+   ],
+   "footprint_tiles": [
+    7,
+    5
+   ],
+   "door_local_tile": [
+    3,
+    4
+   ],
+   "door_px_rect": [
+    48,
+    64,
+    16,
+    16
+   ],
+   "collision": "entire 7x5 footprint (main.js default)",
+   "label_signboard_px": [
+    7,
+    33,
+    98,
+    14
+   ],
+   "label_note": "blank cream signboard; main.js draws the Korean name centred at local (56, 39.5)"
+  },
+  "newscenter": {
+   "file": "buildings/newscenter.png",
+   "size_px": [
+    112,
+    80
+   ],
+   "footprint_tiles": [
+    7,
+    5
+   ],
+   "door_local_tile": [
+    3,
+    4
+   ],
+   "door_px_rect": [
+    48,
+    64,
+    16,
+    16
+   ],
+   "collision": "entire 7x5 footprint (main.js default)",
+   "label_signboard_px": [
+    7,
+    33,
+    98,
+    14
+   ],
+   "label_note": "blank cream signboard; main.js draws the Korean name centred at local (56, 39.5)"
+  }
+ }
+}

@@ -1,0 +1,157 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "dotgame/news.schema.json",
+  "title": "DotGame 건물별 소식 데이터 (data/news.json) v1",
+  "type": "object",
+  "required": [
+    "version",
+    "updated_at",
+    "is_sample",
+    "buildings"
+  ],
+  "properties": {
+    "version": {
+      "const": 1,
+      "description": "스키마 버전. 호환 안 되는 변경 시에만 올린다."
+    },
+    "updated_at": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}(:\\d{2})?\\+09:00$",
+      "description": "ISO 8601, KST(+09:00)"
+    },
+    "is_sample": {
+      "type": "boolean",
+      "description": "true면 게임 내에 '예시 데이터' 표시"
+    },
+    "note": {
+      "type": "string"
+    },
+    "buildings": {
+      "type": "object",
+      "description": "키 = 건물 id. 알려진 id: pcbang, cooking, entertainment (items), sports (items 또는 종목별 categories: mancity/doosan/f1/ufc), newscenter (categories: politics/economy/society/world). 빠진 건물은 게임이 대체 문구 표시.",
+      "propertyNames": {
+        "pattern": "^[a-z][a-z0-9_]*$"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/building"
+      }
+    }
+  },
+  "$defs": {
+    "building": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "표시용 건물 이름 (없으면 게임 기본값)"
+        },
+        "speaker": {
+          "type": "string",
+          "description": "대화창 화자 이름 (없으면 name)"
+        },
+        "greeting": {
+          "type": "string",
+          "description": "첫 페이지 인사말 (선택)"
+        },
+        "items": {
+          "type": "array",
+          "maxItems": 10,
+          "items": {
+            "$ref": "#/$defs/item"
+          },
+          "description": "평평한 소식 목록 (예전 형식, 계속 지원). 최대 10개"
+        },
+        "categories": {
+          "type": "array",
+          "description": "분야별 소식. 뉴스 센터: politics, economy, society, world / 스포츠센터: mancity, doosan, f1, ufc. 분야당 최대 10개. 있으면 건물이 분야 메뉴로 열린다(없는 분야는 '(없음)'). items 와 함께 있으면 items 는 '기타 소식' 분야로 표시.",
+          "items": {
+            "$ref": "#/$defs/category"
+          },
+          "maxItems": 12
+        }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "items"
+          ]
+        },
+        {
+          "required": [
+            "categories"
+          ]
+        }
+      ]
+    },
+    "item": {
+      "type": "object",
+      "required": [
+        "title",
+        "lines"
+      ],
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 60
+        },
+        "lines": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 300
+          },
+          "description": "한 줄 = 대화 한 페이지 권장 (60자 내외). 90자 초과는 자동 분할."
+        },
+        "source": {
+          "type": "string",
+          "format": "uri",
+          "description": "출처 URL (선택). 게임에는 도메인만 표시."
+        },
+        "published_at": {
+          "description": "선택. 기사 시각 ISO 8601 KST(+09:00). 화면엔 MM-DD HH:mm. 빈 문자열/null/생략 허용(시각 표시 안 함)",
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}(:\\d{2})?\\+09:00$"
+            },
+            {
+              "type": "string",
+              "maxLength": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "category": {
+      "type": "object",
+      "required": [
+        "id",
+        "items"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "label": {
+          "type": "string",
+          "description": "메뉴 표시 이름 (없으면 기본값 — 뉴스 센터: 국내 정치·시사 / 경제 / 사회·사건사고 / 국제, 스포츠센터: 맨시티 / 두산 베어스 / F1 / UFC)"
+        },
+        "items": {
+          "type": "array",
+          "maxItems": 10,
+          "items": {
+            "$ref": "#/$defs/item"
+          },
+          "description": "분야당 최대 10개 (게임도 10개까지만 표시)"
+        }
+      }
+    }
+  }
+}

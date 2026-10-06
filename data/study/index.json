@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "updated_at": "2026-10-06T07:00:00+09:00",
+  "is_sample": true,
+  "note": "예시 데이터입니다. 검증된 직업상담사 2급 시험 자료가 아니며, 콘텐츠 봇이 실제 교재(PDF) 기반 데이터로 교체합니다.",
+  "materials": [
+    {
+      "id": "jobcounsel2_sample",
+      "title": "(예시) 직업상담사 2급 기초 이론",
+      "subject": "직업상담학",
+      "page_count": 60,
+      "file": "jobcounsel2_sample.json"
+    }
+  ]
+}

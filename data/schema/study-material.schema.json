@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "dotgame/study-material.schema.json",
+  "title": "DotGame 학습 교재 내용 (data/study/<id>.json) v1",
+  "type": "object",
+  "required": ["version", "id", "title", "is_sample", "chunks"],
+  "properties": {
+    "version": { "const": 1 },
+    "id": { "type": "string", "pattern": "^[a-z0-9_]+$" },
+    "title": { "type": "string" },
+    "subject": { "type": "string" },
+    "page_count": { "type": "integer", "minimum": 1 },
+    "is_sample": { "type": "boolean" },
+    "note": { "type": "string" },
+    "updated_at": { "type": "string" },
+    "chunks": { "type": "array", "items": { "$ref": "#/$defs/chunk" } }
+  },
+  "$defs": {
+    "pages": {
+      "type": "array", "prefixItems": [{ "type": "integer", "minimum": 1 }, { "type": "integer", "minimum": 1 }],
+      "minItems": 2, "maxItems": 2, "description": "[시작, 끝] PDF 페이지 (양끝 포함, 시작<=끝)"
+    },
+    "chunk": {
+      "type": "object",
+      "required": ["id", "pages", "summary"],
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "pages": { "$ref": "#/$defs/pages" },
+        "summary": { "type": "array", "items": { "type": "string", "minLength": 1 }, "description": "한 줄 = 대화창 한 페이지 (90자 초과 자동 분할)" },
+        "questions": { "type": "array", "items": { "$ref": "#/$defs/question" } }
+      }
+    },
+    "question": {
+      "type": "object",
+      "required": ["id", "question", "choices", "answer_index", "explanation"],
+      "properties": {
+        "id": { "type": "string" },
+        "question": { "type": "string", "minLength": 1 },
+        "choices": { "type": "array", "minItems": 2, "maxItems": 5, "items": { "type": "string", "minLength": 1 }, "description": "보통 4지선다" },
+        "answer_index": { "type": "integer", "minimum": 0, "description": "0부터 시작하는 정답 인덱스 (화면에는 ①부터 표시)" },
+        "explanation": { "type": "string" },
+        "pages": { "$ref": "#/$defs/pages", "description": "생략 시 chunk 의 pages 사용" }
+      }
+    }
+  }
+}

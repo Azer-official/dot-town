@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>도트 타운 (프로토타입)</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="game-wrap">
+    <div id="game"></div>
+
+    <div class="hud-stack">
+      <div id="hud-date" class="hud"></div>
+      <div id="hud" class="hud">데이터 불러오는 중…</div>
+    </div>
+    <div id="warn" class="warn-box hidden"></div>
+    <div id="prompt" class="prompt hidden"></div>
+    <div id="toast" class="toast hidden" role="status"></div>
+
+    <!-- 스타듀밸리풍 하단 대화창 -->
+    <div id="dialogue" class="dialogue hidden" role="dialog" aria-live="polite" aria-hidden="true">
+      <div class="dlg-name"><span id="dlg-name-text"></span><span id="dlg-badge" class="dlg-badge hidden">예시 데이터</span></div>
+      <div class="dlg-box">
+        <div id="dlg-text" class="dlg-text"></div>
+        <ol id="dlg-choices" class="dlg-choices hidden"></ol>
+        <div class="dlg-footer"><span id="dlg-meta"></span><span id="dlg-page"></span></div>
+        <div id="dlg-next" class="dlg-next hidden">▼</div>
+        <div id="dlg-portrait" class="dlg-portrait hidden"><img id="dlg-portrait-img" alt=""></div>
+      </div>
+    </div>
+
+    <!-- 뉴스 센터: 분야 메뉴 (학원 패널 스타일 재사용) -->
+    <div id="newscenter" class="panel hidden" role="dialog" aria-label="뉴스 센터">
+      <div class="panel-title"><span id="nc-title">뉴스 센터</span> <span id="nc-badge" class="dlg-badge hidden">예시 데이터</span></div>
+      <div id="nc-greeting" class="nc-greeting"></div>
+      <div id="nc-list"></div>
+      <div class="ac-help">↑↓ 선택 · Enter 보기 (다 보면 메뉴로 돌아옴) · Esc 닫기</div>
+    </div>
+
+    <!-- 학원 UI: 교재/페이지 범위 입력 → 요약 / 예상 문제 -->
+    <div id="academy" class="panel hidden" role="dialog" aria-label="학원">
+      <div class="panel-title">학원 · 직업상담사 2급 (과정평가형) 공부 <span id="ac-badge" class="dlg-badge hidden">예시 데이터</span></div>
+      <div id="ac-menu">
+        <div class="ac-row" data-row="material"><span class="ac-label">교재</span> <span id="ac-material"></span> <small class="ac-hint">←/→ 변경</small></div>
+        <div class="ac-row" data-row="start"><label><span class="ac-label">시작 페이지</span> <input id="ac-start" type="text" inputmode="numeric" maxlength="4" autocomplete="off" placeholder="예: 1"></label></div>
+        <div class="ac-row" data-row="end"><label><span class="ac-label">끝 페이지</span> <input id="ac-end" type="text" inputmode="numeric" maxlength="4" autocomplete="off" placeholder="예: 20"></label> <small id="ac-pagecount" class="ac-hint"></small></div>
+        <div class="ac-row ac-action" data-row="summary">요약 보기</div>
+        <div class="ac-row ac-action" data-row="quiz">예상 문제 풀기</div>
+        <div id="ac-error" class="ac-error" role="alert"></div>
+        <div class="ac-help">↑↓ 이동 · 숫자 입력 · Enter 다음/선택 · Esc 닫기</div>
+      </div>
+      <div id="ac-quiz" class="hidden">
+        <div id="ac-q-head" class="ac-q-head"></div>
+        <div id="ac-q-text" class="ac-q-text"></div>
+        <ol id="ac-q-choices" class="ac-q-choices"></ol>
+        <div id="ac-q-result" class="ac-q-result hidden"></div>
+        <div id="ac-q-help" class="ac-help"></div>
+      </div>
+    </div>
+  </div>
+  <div class="controls">이동: 방향키 / WASD &nbsp;·&nbsp; 문 앞에서 대화: Space / Enter &nbsp;·&nbsp; 다음: Space / Enter &nbsp;·&nbsp; 닫기: Esc &nbsp;·&nbsp; 뉴스 센터·스포츠센터: 분야 선택 &nbsp;·&nbsp; 선택지: ↑↓ + Enter &nbsp;·&nbsp; 학원: 페이지 범위 입력 후 요약/예상문제</div>
+
+  <!-- 순서 중요: Phaser → 데이터 대체본(.js, file:// 용) → 설정/로직 -->
+  <script src="lib/phaser.min.js"></script>
+  <script src="../data/news.js"></script>
+  <script src="../data/study/study.js"></script>
+  <script src="../data/story/story.js"></script>
+  <script src="../data/daily_reactions.js"></script>
+  <script src="assets/asset_index.js"></script>
+  <script src="js/assets.js"></script>
+  <script src="js/map.js"></script>
+  <script src="js/save.js"></script>
+  <script src="js/assets_runtime.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/dialogue.js"></script>
+  <script src="js/academy.js"></script>
+  <script src="js/newscenter.js"></script>
+  <script src="js/story.js"></script>
+  <script src="js/daily.js"></script>
+  <script src="js/npc.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
