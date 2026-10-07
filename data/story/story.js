@@ -988,6 +988,7 @@ window.STORY_DATA = {
         {
           "id": "e31_pass_together",
           "event_id": "E31",
+          "kind": "ending",
           "available_from": "2027-03-05",
           "location": "academy",
           "stage": "s5_flutter",

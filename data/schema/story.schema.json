@@ -133,6 +133,25 @@
                 "key_event": {
                   "type": "boolean",
                   "description": "메타데이터: ★ 단계 전환 핵심 이벤트"
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "장면 종류. 'ending' 이면 즉시 장면(밀린 이벤트 큐·stage·requires_flags 무시, available_from 이 되면 바로 재생)"
+                },
+                "type": {
+                  "type": "string",
+                  "description": "kind 와 같음 (별칭). 'ending' = 즉시 장면"
+                },
+                "bypass_backlog": {
+                  "type": "boolean",
+                  "description": "true = 즉시 장면 (kind 'ending' 과 같은 동작)"
+                },
+                "priority": {
+                  "enum": [
+                    "immediate",
+                    "normal"
+                  ],
+                  "description": "'immediate' = 즉시 장면 (kind 'ending' 과 같은 동작)"
                 }
               }
             }

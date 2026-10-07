@@ -63,6 +63,14 @@ DotGame.Story = (function () {
   }
   function untilOk(sc) { return !sc.available_until || today() <= sc.available_until; }
 
+  // 즉시 장면 (엔딩 등): kind/type 'ending', bypass_backlog: true, priority: 'immediate' 중 하나.
+  //   available_from 이 되면(그 뒤 언제 와도) 밀린 이벤트 큐를 건너뛰고 바로 풀리며, 다른 장면보다 먼저 재생.
+  //   무시하는 조건: 밀린 이벤트 하루 1개 제한(그날 슬롯도 쓰지 않음), stage, requires_flags.
+  //   지키는 조건: available_from, available_until, excludes_flags, 한 번만 재생(repeatable 아니면).
+  function isImmediate(sc) {
+    return !!sc && (sc.kind === 'ending' || sc.type === 'ending' || sc.bypass_backlog === true || sc.priority === 'immediate');
+  }
+
   // ---------- 호감도 단계 ----------
   function stageDefs(cid) {
     var d = data(), k = charKey(cid) || cid;
@@ -135,13 +143,14 @@ DotGame.Story = (function () {
   }
   function seen(cid, sc) { return !!st().seen[key(cid, sc)]; }
   function baseOk(cid, sc) {     // 날짜 풀림 여부를 뺀 나머지 조건
+    if (isImmediate(sc)) return (sc.repeatable || !seen(cid, sc)) && !arr(sc.excludes_flags).some(hasFlag) && untilOk(sc);
     return (sc.repeatable || !seen(cid, sc)) && flagsOk(sc) && untilOk(sc) && stageOk(cid, sc);
   }
   // 하루에 밀린 이벤트 하나 풀기 (오래된 순, 지금 조건이 맞는 것만; 풀렸지만 아직 안 본 밀린 이벤트가 있으면 대기)
   function processBacklog() {
     var s = st(), t = today();
     if (s.backlog_day === t) return null;
-    var list = allScenes().filter(function (x) { return x.sc.available_from && x.sc.available_from < t; });
+    var list = allScenes().filter(function (x) { return x.sc.available_from && x.sc.available_from < t && !isImmediate(x.sc); });
     var pending = list.some(function (x) {
       var r = s.released[key(x.cid, x.sc)];
       return r && r > x.sc.available_from && !seen(x.cid, x.sc) && baseOk(x.cid, x.sc);
@@ -161,7 +170,7 @@ DotGame.Story = (function () {
     var t = today(), k = key(cid, sc);
     if (from > t) return false;
     if (st().released[k]) return true;
-    if (from === t) { st().released[k] = t; S().persist(); return true; }
+    if (from === t || isImmediate(sc)) { st().released[k] = t; S().persist(); return true; }   // 즉시 장면: backlog_day 를 건드리지 않음
     return false;     // 지난 날짜 → 밀린 이벤트 큐 (processBacklog)
   }
   function available(cid, sc) { return baseOk(cid, sc) && released(cid, sc); }
@@ -174,7 +183,8 @@ DotGame.Story = (function () {
   function availableScenes(cid) {
     processBacklog();
     var ch = character(cid);
-    return ch ? arr(ch.scenes).filter(function (sc) { return isObj(sc) && sc.id && available(cid, sc); }) : [];
+    var list = ch ? arr(ch.scenes).filter(function (sc) { return isObj(sc) && sc.id && available(cid, sc); }) : [];
+    return list.filter(isImmediate).concat(list.filter(function (sc) { return !isImmediate(sc); }));   // 즉시 장면 먼저
   }
   // NPC 에게 말 걸 때 재생할 장면. where = 지금 NPC 가 서 있는 곳(기본 장소 또는 방문 중인 건물)
   function talkScene(cid, where) {
@@ -269,7 +279,7 @@ DotGame.Story = (function () {
   function debugState() {
     var out = {};
     allScenes().forEach(function (x) {
-      out[key(x.cid, x.sc)] = { available: available(x.cid, x.sc), door: isDoorScene(x.cid, x.sc), location: sceneLoc(x.cid, x.sc),
+      out[key(x.cid, x.sc)] = { available: available(x.cid, x.sc), immediate: isImmediate(x.sc), door: isDoorScene(x.cid, x.sc), location: sceneLoc(x.cid, x.sc),
         seen: st().seen[key(x.cid, x.sc)] || null, released: st().released[key(x.cid, x.sc)] || null };
     });
     var stages = {};
@@ -280,7 +290,7 @@ DotGame.Story = (function () {
   return {
     hasFlag: hasFlag, flagsOk: flagsOk, character: character, charKey: charKey, homeOf: homeOf,
     talkScene: talkScene, doorScene: doorScene, placement: placement, play: play, buildPages: buildPages,
-    processBacklog: processBacklog, available: available,
+    processBacklog: processBacklog, available: available, isImmediate: isImmediate,
     currentStage: currentStage, updateStages: updateStages, stageDefs: stageDefs,
     onStageChange: function (fn) { stageListeners.push(fn); },
     playerName: playerName, state: debugState

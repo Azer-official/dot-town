@@ -1,9 +1,105 @@
 {
   "version": 1,
-  "updated_at": "2026-10-07T00:40:00+09:00",
-  "is_sample": true,
-  "note": "빈 자리(개발 봇이 만든 초기 파일). 콘텐츠 봇이 매일 아침 news.json 과 함께 덮어씀. 형식: docs/DATA_FORMAT.md 4장, 예시: story/daily_reaction_example.json",
+  "updated_at": "2026-10-07T20:30:00+09:00",
+  "is_sample": false,
   "date": "2026-10-07",
-  "news_updated_at": "",
-  "reactions": []
+  "news_updated_at": "2026-10-07T20:30:00+09:00",
+  "reactions": [
+    {
+      "id": "r20261007_cooking_juyeon",
+      "character": "juyeon",
+      "topic": "recipe",
+      "where": "cooking",
+      "trigger": "after_news",
+      "news_ref": {
+        "building": "cooking",
+        "item_index": 0,
+        "title": "오늘의 레시피: 백종원 김치찌개 (인덕션 2구, 2인분)"
+      },
+      "conditions": {
+        "stages": [
+          "s1_comfortable"
+        ],
+        "periods": [
+          "class"
+        ]
+      },
+      "emotion": "curious",
+      "priority": 5,
+      "lines": [
+        {
+          "speaker": "juyeon",
+          "text": "현수쌤, 김치찌개를 쌀뜨물로 끓이는 거였네요.",
+          "emotion": "curious"
+        },
+        {
+          "speaker": "hyunsu",
+          "text": "네, 오늘 저녁에 한번 해 볼까 봐요."
+        }
+      ]
+    },
+    {
+      "id": "r20261007_entertainment_juyeon",
+      "character": "juyeon",
+      "topic": "kpop_release",
+      "where": "entertainment",
+      "trigger": "after_news",
+      "news_ref": {
+        "building": "entertainment",
+        "item_index": 2,
+        "title": "황민현, 8개월 만의 신곡 'OUR' 발매"
+      },
+      "conditions": {
+        "stages": [
+          "s1_comfortable"
+        ],
+        "periods": [
+          "class"
+        ]
+      },
+      "emotion": "smile",
+      "priority": 4,
+      "lines": [
+        {
+          "speaker": "juyeon",
+          "text": "현수쌤, 황민현 신곡 'OUR'가 오늘 나왔대요. 들어 보셨어요?",
+          "emotion": "smile"
+        }
+      ]
+    },
+    {
+      "id": "r20261007_sports_kang_myeongheon",
+      "character": "kang_myeongheon",
+      "topic": "kbo_doosan",
+      "where": "sports",
+      "trigger": "after_news",
+      "news_ref": {
+        "building": "sports",
+        "category_id": "doosan",
+        "item_index": 0,
+        "title": "마지막 잠실 더비, 4~5위 순위 걸린 LG전"
+      },
+      "conditions": {
+        "stages": [
+          "s1_comfortable"
+        ],
+        "periods": [
+          "class"
+        ]
+      },
+      "emotion": "smile",
+      "priority": 5,
+      "lines": [
+        {
+          "speaker": "kang_myeongheon",
+          "text": "현수쌤, 오늘 마지막 잠실 더비네요. 4위 싸움 걸렸죠?",
+          "emotion": "smile"
+        },
+        {
+          "speaker": "hyunsu",
+          "text": "네, 명헌쌤. 오늘은 저 두산 응원 열심히 할게요."
+        }
+      ]
+    }
+  ]
 }

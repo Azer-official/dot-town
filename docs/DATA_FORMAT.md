@@ -228,7 +228,7 @@
 
 ### 3-1. 캐릭터 `characters.<id>`
 - 키 = NPC id: `heroine`, `park_youngmi`, `jung_hyuna`, `jo_sunmi`, `lee_jin`, `kang_myeongheon` (`game/js/map.js` 의 `DotGame.NPCS`).
-  NPC 목록·위치·화자 이름→초상화 표는 **[`docs/NPCS.md`](NPCS.md)**. 별칭 키(`cho_sunmi`, `kang_myungheon`)도 인식한다.
+  NPC 목록·위치·화자 이름→초상화 표는 **[`docs/NPCS.md`](NPCS.md)**. 키는 정식 id(`jo_sunmi`, `kang_myeongheon` 등)를 쓴다.
 - `name`: 대화창 이름. `location`: 기본 장소(NPC 가 서 있는 곳, 보통 `academy`). `default_lines`: 맞는 장면이 없을 때.
 - `stages` (선택): 이 캐릭터의 호감도 단계. 최상위 `affection_stages.<id>` 에 둬도 된다(3-4).
 
@@ -248,6 +248,7 @@
 | **`location`** | 건물 id | 캐릭터 `location` 과 같거나 생략 → NPC 에게 말 걸 때. **다른 건물 id**(`pcbang` 등) → 그 건물 문에서 Space 를 누를 때 재생 (3-5) |
 | **`door_mode`** | `instead`(기본) \| `before` | 건물 장면: 건물 기본 콘텐츠(소식/메뉴) **대신** 재생, 또는 장면 **후** 기본 콘텐츠 |
 | `repeatable` | 불리언 | `true` 면 재생 후에도 조건이 맞으면 다시 (기본: 장면은 **한 번만**, 세이브 `story.seen`) |
+| **`kind`** / `type` / `bypass_backlog` / `priority` | `"ending"` / `"ending"` / `true` / `"immediate"` | 즉시 장면 (아래 '즉시 장면') |
 | `event_id`, `note`, `key_event` | — | 메타데이터 (게임은 무시) |
 
 **밀린 이벤트 (놓친 이벤트) 규칙**
@@ -258,6 +259,35 @@
   - 풀렸지만 아직 안 본 밀린 이벤트가 있으면 다음 것을 풀지 않는다.
 - 예: E01을 10-07에 보고 10-20에 다시 접속하면 그날은 E02만 풀린다. E03(10-17)은 다음 플레이 날짜에 풀린다.
 - 기록은 세이브 `story.released` 와 `story.backlog_day` 에 남는다(`docs/SAVE_FORMAT.md`).
+
+**즉시 장면 (엔딩 등) — 밀린 이벤트 큐를 건너뜀**
+
+장면에 아래 표시 중 **하나**만 있으면 즉시 장면이다.
+
+| 필드 | 값 |
+|---|---|
+| `kind` | `"ending"` (권장) |
+| `type` | `"ending"` (`kind` 와 같은 뜻) |
+| `bypass_backlog` | `true` |
+| `priority` | `"immediate"` |
+
+- **`available_from` 날짜부터** 언제 접속하든 바로 풀린다. 그 날짜든, 몇 달 뒤 처음 오는 날이든 상관없다.
+- 다른 장면보다 **먼저** 재생된다. 더 오래된 밀린 이벤트보다도, 풀렸지만 안 본 밀린 이벤트보다도 먼저다.
+- **그날 밀린 이벤트 몫을 쓰지 않는다**. 엔딩을 본 같은 날에도 가장 오래된 밀린 장면 1개가 평소처럼 풀린다. 그 뒤로는 다시 하루 1개다.
+- **무시하는 조건**:
+  - 밀린 이벤트 하루 1개 제한
+  - `stage` (호감도 단계가 낮아도 재생)
+  - `requires_flags` (오래 쉰 플레이어에게 없는 앞 장면 플래그, 예: `e24_back_from_home_done`)
+- **지키는 조건**:
+  - `available_from` (그 전 날짜엔 안 나옴)
+  - `available_until`
+  - `excludes_flags`
+  - 한 번만 재생 (`repeatable` 이 아니면 세이브 `story.seen`)
+- 재생 효과(`set_flags`, `affection`)는 보통 장면과 같다. 단, 호감도 단계는 앞에서부터 순서대로 오르기 때문에 앞 단계 조건이 비어 있으면 `ending_seen` 이 켜져도 `post_ending` 단계로 바로 가지는 않는다.
+- **현재 데이터**: `heroine/e31_pass_together` 에 `"kind": "ending"` 이 들어 있다.
+  - 개발 봇이 이 필드 하나만 병합했다. 백업: `story/backup/story.json.bak-20261007-201319-devbot`.
+  - **story.json 을 다시 쓸 때 이 필드를 유지할 것**. 빠지면 E31 은 보통 밀린 이벤트처럼 하루 1개 순서와 조건을 따른다.
+- 확인: 콘솔 `DotGame.debug.story().scenes["heroine/e31_pass_together"].immediate`, 테스트 `test_ending`.
 
 ### 3-3. 대사 줄 `lines[]`
 | 형태 | 뜻 |

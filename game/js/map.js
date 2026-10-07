@@ -57,9 +57,9 @@ DotGame.NPCS = [
   // 학원 마당 NPC 5인 (ART_MANIFEST 학원 NPC). 강사는 학원 문 바로 옆.
   { id: 'park_youngmi',    name: '박영미', role: '강사',   x: 14, y: 6, facing: 'down',  location: 'academy' },
   { id: 'jung_hyuna',      name: '정현아', role: '수강생', x: 12, y: 7, facing: 'right', location: 'academy' },
-  { id: 'jo_sunmi',        name: '조선미', role: '반장',   x: 13, y: 8, facing: 'left',  location: 'academy', storyKeys: ['cho_sunmi'] },
+  { id: 'jo_sunmi',        name: '조선미', role: '반장',   x: 13, y: 8, facing: 'left',  location: 'academy' },
   { id: 'lee_jin',         name: '이진',   role: '수강생', x: 18, y: 8, facing: 'up',    location: 'academy' },
-  { id: 'kang_myeongheon', name: '강명헌', role: '수강생', x: 19, y: 7, facing: 'left',  location: 'academy', storyKeys: ['kang_myungheon'] }
+  { id: 'kang_myeongheon', name: '강명헌', role: '수강생', x: 19, y: 7, facing: 'left',  location: 'academy' }
 ];
 
 // 스토리 장면이 다른 건물(location)에서 대기 중일 때 NPC(예: 히로인)가 서 있는 자리 — 문 옆, 길을 막지 않는 칸

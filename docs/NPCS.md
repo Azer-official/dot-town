@@ -14,9 +14,9 @@ NPC는 타일 1칸을 차지해 충돌하고, 바라보고 **Space / Enter** 를
 | `heroine` | ??? → 주연 (메인 히로인) | (17,6) 학원 문 오른쪽 | down | (16,6)에서 → | `npcs/heroine.png` | `npcs/heroine_portrait.png` | `characters.heroine` |
 | `park_youngmi` | 박영미 / 강사 | (14,6) **학원 문 바로 왼쪽**(가장 가까움) | down | (15,6)에서 ← | `npcs/park_youngmi.png` | `npcs/park_youngmi_portrait.png` | `characters.park_youngmi` |
 | `jung_hyuna` | 정현아 / 수강생 | (12,7) 왼쪽 화단 앞 | right | (13,7)에서 ← | `npcs/jung_hyuna.png` | `npcs/jung_hyuna_portrait.png` | `characters.jung_hyuna` |
-| `jo_sunmi` | 조선미 / 반장 | (13,8) 벤치와 가로등 사이 | left | (13,7)에서 ↓ | `npcs/jo_sunmi.png` | `npcs/jo_sunmi_portrait.png` | `characters.jo_sunmi` (별칭 `cho_sunmi`) |
+| `jo_sunmi` | 조선미 / 반장 | (13,8) 벤치와 가로등 사이 | left | (13,7)에서 ↓ | `npcs/jo_sunmi.png` | `npcs/jo_sunmi_portrait.png` | `characters.jo_sunmi` |
 | `lee_jin` | 이진 / 수강생 | (18,8) 가로등과 벤치 사이 | up | (18,7)에서 ↓ | `npcs/lee_jin.png` | `npcs/lee_jin_portrait.png` | `characters.lee_jin` |
-| `kang_myeongheon` | 강명헌 / 수강생 | (19,7) 오른쪽 나무 옆 | left | (18,7)에서 → | `npcs/kang_myeongheon.png` | `npcs/kang_myeongheon_portrait.png` | `characters.kang_myeongheon` (별칭 `kang_myungheon`) |
+| `kang_myeongheon` | 강명헌 / 수강생 | (19,7) 오른쪽 나무 옆 | left | (18,7)에서 → | `npcs/kang_myeongheon.png` | `npcs/kang_myeongheon_portrait.png` | `characters.kang_myeongheon` |
 
 시트와 초상화 경로는 `game/assets/` 기준이다.
 
@@ -37,7 +37,7 @@ NPC는 타일 1칸을 차지해 충돌하고, 바라보고 **Space / Enter** 를
 
 `DotGame.NPC.talk(def, where)` 는 다음 순서로 대사를 고른다. `where` 는 NPC 가 지금 서 있는 장소이고 보통 `academy` 다.
 
-1. **캐릭터 찾기**: `characters[def.id]` 를 먼저 찾는다. 없으면 `def.storyKeys` 에 적힌 별칭 키를 순서대로 찾는다.
+1. **캐릭터 찾기**: `characters[def.id]` (정식 NPC id: `jo_sunmi`, `kang_myeongheon` 등). `def.storyKeys` 별칭 배열 기능은 남아 있지만 현재 쓰는 NPC 는 없다.
 2. **스토리 장면** (`DotGame.Story.talkScene`): 조건을 모두 만족하는 **첫 장면**을 재생한다(`game/js/story.js`).
    - 조건: `requires_flags`/`excludes_flags`, `available_from`/`available_until`, 밀린 이벤트 차례, `stage`, 한 번만 재생.
    - 상세 필드는 [`DATA_FORMAT.md` 3장](DATA_FORMAT.md)에 있다.
