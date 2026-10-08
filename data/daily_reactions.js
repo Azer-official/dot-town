@@ -2,13 +2,13 @@
 // 재생성: python3 tools/build_fallbacks.py
 window.DAILY_REACTIONS_DATA = {
   "version": 1,
-  "updated_at": "2026-10-07T20:30:00+09:00",
+  "updated_at": "2026-10-08T20:19:00+09:00",
   "is_sample": false,
-  "date": "2026-10-07",
-  "news_updated_at": "2026-10-07T20:30:00+09:00",
+  "date": "2026-10-08",
+  "news_updated_at": "2026-10-08T20:19:00+09:00",
   "reactions": [
     {
-      "id": "r20261007_cooking_juyeon",
+      "id": "r20261008_cooking_juyeon",
       "character": "juyeon",
       "topic": "recipe",
       "where": "cooking",
@@ -16,7 +16,7 @@ window.DAILY_REACTIONS_DATA = {
       "news_ref": {
         "building": "cooking",
         "item_index": 0,
-        "title": "오늘의 레시피: 백종원 김치찌개 (인덕션 2구, 2인분)"
+        "title": "오늘의 레시피: 백종원 제육볶음 (인덕션 2구, 2인분)"
       },
       "conditions": {
         "stages": [
@@ -31,25 +31,25 @@ window.DAILY_REACTIONS_DATA = {
       "lines": [
         {
           "speaker": "juyeon",
-          "text": "현수쌤, 김치찌개를 쌀뜨물로 끓이는 거였네요.",
+          "text": "현수쌤, 제육볶음은 설탕을 먼저 넣는 거였네요.",
           "emotion": "curious"
         },
         {
           "speaker": "hyunsu",
-          "text": "네, 오늘 저녁에 한번 해 볼까 봐요."
+          "text": "네, 내일 한글날이라 한번 만들어 보려고요."
         }
       ]
     },
     {
-      "id": "r20261007_entertainment_juyeon",
-      "character": "juyeon",
+      "id": "r20261008_entertainment_lee_jin",
+      "character": "lee_jin",
       "topic": "kpop_release",
       "where": "entertainment",
       "trigger": "after_news",
       "news_ref": {
         "building": "entertainment",
-        "item_index": 2,
-        "title": "황민현, 8개월 만의 신곡 'OUR' 발매"
+        "item_index": 0,
+        "title": "엔플라잉, 미니 9집 'Still' 발매…타이틀곡 '잔불'"
       },
       "conditions": {
         "stages": [
@@ -59,27 +59,27 @@ window.DAILY_REACTIONS_DATA = {
           "class"
         ]
       },
-      "emotion": "smile",
+      "emotion": "excited",
       "priority": 4,
       "lines": [
         {
-          "speaker": "juyeon",
-          "text": "현수쌤, 황민현 신곡 'OUR'가 오늘 나왔대요. 들어 보셨어요?",
-          "emotion": "smile"
+          "speaker": "lee_jin",
+          "text": "현수쌤~ 엔플라잉 '잔불' 오늘 나왔대요! 같이 들어 봐요~",
+          "emotion": "excited"
         }
       ]
     },
     {
-      "id": "r20261007_sports_kang_myeongheon",
+      "id": "r20261008_sports_kang_myeongheon",
       "character": "kang_myeongheon",
       "topic": "kbo_doosan",
       "where": "sports",
       "trigger": "after_news",
       "news_ref": {
         "building": "sports",
-        "category_id": "doosan",
         "item_index": 0,
-        "title": "마지막 잠실 더비, 4~5위 순위 걸린 LG전"
+        "title": "두산, LG에 5-7 패…정규시즌 5위 확정",
+        "category_id": "doosan"
       },
       "conditions": {
         "stages": [
@@ -94,12 +94,46 @@ window.DAILY_REACTIONS_DATA = {
       "lines": [
         {
           "speaker": "kang_myeongheon",
-          "text": "현수쌤, 오늘 마지막 잠실 더비네요. 4위 싸움 걸렸죠?",
+          "text": "현수쌤, 두산 5위 확정이네요. 그래도 가을야구 축하해요.",
           "emotion": "smile"
         },
         {
           "speaker": "hyunsu",
-          "text": "네, 명헌쌤. 오늘은 저 두산 응원 열심히 할게요."
+          "text": "고마워요, 명헌쌤. 기아도 어제 12점이나 냈던데요."
+        }
+      ]
+    },
+    {
+      "id": "r20261008_sports_juyeon_mancity",
+      "character": "juyeon",
+      "topic": "epl_mancity",
+      "where": "sports",
+      "trigger": "after_news",
+      "news_ref": {
+        "building": "sports",
+        "item_index": 1,
+        "title": "리버풀전 부상 현황: 홀란·세메뇨·오라일리 '경미한 의문'",
+        "category_id": "mancity"
+      },
+      "conditions": {
+        "stages": [
+          "s1_comfortable"
+        ],
+        "periods": [
+          "class"
+        ]
+      },
+      "emotion": "curious",
+      "priority": 4,
+      "lines": [
+        {
+          "speaker": "juyeon",
+          "text": "현수쌤, 홀란 선수는 다친 게 아니라 피곤한 거래요. 다행이죠?",
+          "emotion": "curious"
+        },
+        {
+          "speaker": "hyunsu",
+          "text": "네, 리버풀전엔 나올 것 같아서 다행이에요."
         }
       ]
     }
