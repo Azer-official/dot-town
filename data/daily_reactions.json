@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "updated_at": "2026-10-08T20:19:00+09:00",
+  "updated_at": "2026-10-09T21:00:00+09:00",
   "is_sample": false,
-  "date": "2026-10-08",
-  "news_updated_at": "2026-10-08T20:19:00+09:00",
+  "date": "2026-10-09",
+  "news_updated_at": "2026-10-09T21:00:00+09:00",
   "reactions": [
     {
-      "id": "r20261008_cooking_juyeon",
+      "id": "r20261009_cooking_juyeon",
       "character": "juyeon",
       "topic": "recipe",
       "where": "cooking",
@@ -14,7 +14,7 @@
       "news_ref": {
         "building": "cooking",
         "item_index": 0,
-        "title": "오늘의 레시피: 백종원 제육볶음 (인덕션 2구, 2인분)"
+        "title": "오늘의 레시피: 백종원 만능간장 잡채 (인덕션 2구, 3인분)"
       },
       "conditions": {
         "stages": [
@@ -29,25 +29,26 @@
       "lines": [
         {
           "speaker": "juyeon",
-          "text": "현수쌤, 제육볶음은 설탕을 먼저 넣는 거였네요.",
-          "emotion": "curious"
+          "text": "현수쌤, 잡채는 당면을 2~3시간이나 불려야 한대요.",
+          "emotion": "surprised"
         },
         {
           "speaker": "hyunsu",
-          "text": "네, 내일 한글날이라 한번 만들어 보려고요."
+          "text": "그럼 오늘은 아침에 미리 불려 둬야겠네요."
         }
       ]
     },
     {
-      "id": "r20261008_entertainment_lee_jin",
-      "character": "lee_jin",
-      "topic": "kpop_release",
-      "where": "entertainment",
+      "id": "r20261009_sports_juyeon_f1",
+      "character": "juyeon",
+      "topic": "f1",
+      "where": "sports",
       "trigger": "after_news",
       "news_ref": {
-        "building": "entertainment",
+        "building": "sports",
+        "category_id": "f1",
         "item_index": 0,
-        "title": "엔플라잉, 미니 9집 'Still' 발매…타이틀곡 '잔불'"
+        "title": "싱가포르 GP 유일한 연습주행, 러셀 1위"
       },
       "conditions": {
         "stages": [
@@ -57,27 +58,27 @@
           "class"
         ]
       },
-      "emotion": "excited",
+      "emotion": "curious",
       "priority": 4,
       "lines": [
         {
-          "speaker": "lee_jin",
-          "text": "현수쌤~ 엔플라잉 '잔불' 오늘 나왔대요! 같이 들어 봐요~",
-          "emotion": "excited"
+          "speaker": "juyeon",
+          "text": "현수쌤, 싱가포르 연습주행은 러셀 선수가 1위래요. 누구 응원하세요?",
+          "emotion": "curious"
         }
       ]
     },
     {
-      "id": "r20261008_sports_kang_myeongheon",
+      "id": "r20261009_sports_kang_myeongheon",
       "character": "kang_myeongheon",
       "topic": "kbo_doosan",
       "where": "sports",
       "trigger": "after_news",
       "news_ref": {
         "building": "sports",
+        "category_id": "doosan",
         "item_index": 0,
-        "title": "두산, LG에 5-7 패…정규시즌 5위 확정",
-        "category_id": "doosan"
+        "title": "KT 이강철 감독 \"5위 두산, 4위 팀 머리 아플 듯\""
       },
       "conditions": {
         "stages": [
@@ -92,46 +93,12 @@
       "lines": [
         {
           "speaker": "kang_myeongheon",
-          "text": "현수쌤, 두산 5위 확정이네요. 그래도 가을야구 축하해요.",
+          "text": "현수쌤, KT 감독님도 두산을 경계한대요. 가을에 무섭겠는데요?",
           "emotion": "smile"
         },
         {
           "speaker": "hyunsu",
-          "text": "고마워요, 명헌쌤. 기아도 어제 12점이나 냈던데요."
-        }
-      ]
-    },
-    {
-      "id": "r20261008_sports_juyeon_mancity",
-      "character": "juyeon",
-      "topic": "epl_mancity",
-      "where": "sports",
-      "trigger": "after_news",
-      "news_ref": {
-        "building": "sports",
-        "item_index": 1,
-        "title": "리버풀전 부상 현황: 홀란·세메뇨·오라일리 '경미한 의문'",
-        "category_id": "mancity"
-      },
-      "conditions": {
-        "stages": [
-          "s1_comfortable"
-        ],
-        "periods": [
-          "class"
-        ]
-      },
-      "emotion": "curious",
-      "priority": 4,
-      "lines": [
-        {
-          "speaker": "juyeon",
-          "text": "현수쌤, 홀란 선수는 다친 게 아니라 피곤한 거래요. 다행이죠?",
-          "emotion": "curious"
-        },
-        {
-          "speaker": "hyunsu",
-          "text": "네, 리버풀전엔 나올 것 같아서 다행이에요."
+          "text": "명헌쌤이 그렇게 말해 주시니 더 기대돼요."
         }
       ]
     }
