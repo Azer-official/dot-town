@@ -2,13 +2,13 @@
 // 재생성: python3 tools/build_fallbacks.py
 window.DAILY_REACTIONS_DATA = {
   "version": 1,
-  "updated_at": "2026-10-10T21:00:00+09:00",
+  "updated_at": "2026-10-11T21:00:00+09:00",
   "is_sample": false,
-  "date": "2026-10-10",
-  "news_updated_at": "2026-10-10T21:00:00+09:00",
+  "date": "2026-10-11",
+  "news_updated_at": "2026-10-11T21:00:00+09:00",
   "reactions": [
     {
-      "id": "r20261010_cooking_juyeon",
+      "id": "r20261011_cooking_juyeon",
       "character": "juyeon",
       "topic": "recipe",
       "where": "cooking",
@@ -16,7 +16,7 @@ window.DAILY_REACTIONS_DATA = {
       "news_ref": {
         "building": "cooking",
         "item_index": 0,
-        "title": "오늘의 레시피: 백종원 된장찌개 (인덕션 2구, 3인분)"
+        "title": "오늘의 레시피: 백종원 어묵볶음 (인덕션 2구, 3인분)"
       },
       "conditions": {
         "stages": [
@@ -31,17 +31,17 @@ window.DAILY_REACTIONS_DATA = {
       "lines": [
         {
           "speaker": "juyeon",
-          "text": "현수쌤, 백종원 된장찌개는 쌀뜨물에 무부터 끓인대요.",
+          "text": "현수쌤, 어묵볶음은 양념까지 다 넣고 불을 켠대요.",
           "emotion": "curious"
         },
         {
           "speaker": "hyunsu",
-          "text": "쌀 씻을 때 물 버리지 말고 받아 둬야겠네요."
+          "text": "3~4분이면 끝나니까 반찬으로 딱이네요."
         }
       ]
     },
     {
-      "id": "r20261010_sports_juyeon_f1",
+      "id": "r20261011_sports_juyeon_f1",
       "character": "juyeon",
       "topic": "f1",
       "where": "sports",
@@ -50,7 +50,7 @@ window.DAILY_REACTIONS_DATA = {
         "building": "sports",
         "category_id": "f1",
         "item_index": 0,
-        "title": "싱가포르 스프린트, 베르스타펜 우승…러셀 리타이어"
+        "title": "싱가포르 GP 예선: 베르스타펜 첫 마리나베이 폴"
       },
       "conditions": {
         "stages": [
@@ -65,13 +65,13 @@ window.DAILY_REACTIONS_DATA = {
       "lines": [
         {
           "speaker": "juyeon",
-          "text": "현수쌤, 싱가포르 스프린트는 베르스타펜 선수가 이겼대요!",
+          "text": "현수쌤, 싱가포르 예선도 베르스타펜 선수가 1위래요!",
           "emotion": "surprised"
         }
       ]
     },
     {
-      "id": "r20261010_sports_kang_myeongheon",
+      "id": "r20261011_sports_kang_myeongheon",
       "character": "kang_myeongheon",
       "topic": "kbo_doosan",
       "where": "sports",
@@ -80,7 +80,7 @@ window.DAILY_REACTIONS_DATA = {
         "building": "sports",
         "category_id": "doosan",
         "item_index": 0,
-        "title": "LG 3위 경쟁 불리…LG-두산 와일드카드 맞대결 가능성"
+        "title": "KIA, 롯데에 1-4 패…3위는 12일 KIA-LG 최종전에서 결정"
       },
       "conditions": {
         "stages": [
@@ -95,12 +95,12 @@ window.DAILY_REACTIONS_DATA = {
       "lines": [
         {
           "speaker": "kang_myeongheon",
-          "text": "현수쌤, 두산이 와일드카드에서 LG랑 붙을 수도 있대요.",
+          "text": "현수쌤, 3위는 내일 KIA-LG 최종전에서 정해진대요.",
           "emotion": "smile"
         },
         {
           "speaker": "hyunsu",
-          "text": "잠실 라이벌전이면 더 떨리겠네요."
+          "text": "두산 상대도 내일 정해지겠네요."
         }
       ]
     }
